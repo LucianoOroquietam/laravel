@@ -1,0 +1,19 @@
+para trabajar con plantillas en laravel tenemos dos formas.
+1- es crear un componente y dentro del mismo incluir la estrucutra repetitiva. ("app-layout.blade.php) es la q se usa
+de ejemplo.
+2- la tenemos en layouts/app.blade.php
+
+ @yield('content')
+ es una directiva que se usa para decir que es un
+ contenido variable indentificado con la palabra content
+
+ @stack('css')
+
+
+la ventaja de la directiva stack es que los push que nosotros
+colocamos se van anidando o sumando (es decir hacemos referencia
+a ese stack mas de una vez). En cambio yield es unico
+osea un unico title , una unica section etc.
+
+
+en posts/index.blade.php estan las dos formas
