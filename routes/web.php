@@ -24,6 +24,7 @@ Route::get('/home', HomeController::class);
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Models\Post;
 
 Route::get('/home', HomeController::class);
 
@@ -36,6 +37,53 @@ Route::get('/posts', [PostController::class, 'index']);
 Route::get('/posts/create', [PostController::class, 'create']);
 Route::get('/posts/{post}', [PostController::class, 'posts']);
 Route::get('/posts/{post}/{category?}', [PostController::class, 'postsCategory']);
+
+
+Route::get('prueba', function () {
+
+    //crear nuevo post
+
+    // $post = new Post;
+    // $post->title = 'TitUlO DE pruEbA 4';
+    // $post->content = 'contenido de prueba 2';
+    // $post->categoria = 'categoria de prueba 2';
+
+    // $post->save();
+
+    // return $post;
+
+
+
+    //$post = Post::find(1); --> buscar por id
+
+    /* actualizar registro
+    $post = Post::where('title', 'Titulo de prueba 2')->first();
+
+    $post->categoria = 'Desarrollo web';
+    $post->save();
+    return $post;
+    */
+
+
+
+    //$posts = Post::all();
+    //$posts = Post::where('id', '>=', '2')->get();
+    //$posts = Post::orderBy('id', 'desc')->get();
+
+    /* lista registros
+    $posts = Post::orderBy('categoria', 'asc')
+                    ->select('title', 'categoria')
+                    ->take(2) //canti de registros
+                    ->get();
+    return $posts;
+    */
+
+    /*eliminar
+    $post = Post::find(1);
+    $post->delete();
+    return "el elemento con id: " . $post . " fue eliminado con exito";
+    */
+});
 
 
 
@@ -73,4 +121,3 @@ Route::get('/posts/{post}/{category?}', function($post, $category = null){
     return "Aca se mostrar el post {$post} sin la category";
 });
 */
-
