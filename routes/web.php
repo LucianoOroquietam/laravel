@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Models\Post;
+use App\Utils\Casting as UtilsCasting;
 
 Route::get('/home', HomeController::class);
 
@@ -40,6 +41,22 @@ Route::get('/posts/{post}/{category?}', [PostController::class, 'postsCategory']
 
 
 Route::get('prueba', function () {
+
+
+$post = Post::find(1);
+
+// return $post->created_at->format('d-m-Y');
+// return $post->published_at->diffForHumans();
+
+// return $post->published_at->format('d-m-Y');
+
+
+// dd($post->is_active);
+
+
+$value = UtilsCasting::cast($post->published_at, 'datetime', 'Y-m-d');
+return $value;
+
 
     //crear nuevo post
 
