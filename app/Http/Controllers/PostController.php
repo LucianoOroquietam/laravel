@@ -2,41 +2,74 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function index()
+    public function home()
     {
-        return view('posts.index');
+        $posts = Post::orderBy('id','desc')->get();
+        return view('posts.home', compact('posts'));
     }
 
-    public function create()
+    public function createPost()
     {
         return view('posts.create');
     }
 
-    public function posts($post)
+    public function postCreated(Request $request){
+        $post = new Post();
+
+        $post->title = $request->title;
+        $post->category = $request->category;
+        $post->content = $request->content;
+        $post->published_at = Carbon::parse($request->published_at);
+
+        $post->save();
+
+        return redirect('/posts')->with('success', 'El post fue creado con exito');
+    }
+
+    public function editPost($idPost){
+        $post = Post::find($idPost);
+        return view('posts.edit', compact('post'));
+    }
+
+    public function postEdited($idPost, Request $request){
+        $post = POST::find($idPost);
+
+        $post->title = $request->title;
+        $post->category = $request->category;
+        $post->content = $request->content;
+
+        $post->published_at = $request->published_at
+        ? Carbon::createFromFormat('Y-m-d', $request->published_at)
+        : null;
+
+        $post->save();
+
+        return redirect("/")->with('success', 'El post fue editado con exito');
+    }
+
+    public function postsById($post)
     {
-        /**
-         *
-         * ,['post' => $post ] 1 forma
-         *   compact ('post'); que seria == ['posts' => $post]; es un array asociativo
-         */
+        $post = Post::find($post);
         return view('posts.posts', compact('post'));
+    }
+
+    public function deletePost($idPost){
+        $post = Post::findOrFail($idPost);
+        $post->delete();
+
+        return redirect('/posts')->with('success', 'Post eliminado correctamente');
+
+
     }
 
     public function postsCategory($post, $category = null)
     {
-
-        /* una forma de pasarlo a la view
-        if(isset($category)){
-            return view('posts.postsCategory', compact('post','category'));
-        }
-        return view('posts.postsCategory', compact('post'));
-        */
-
-        //otra forma para pasar el parametro como de costumbre
         $data = compact('post');
         if ($category !== null) {
             $data['category'] = $category;

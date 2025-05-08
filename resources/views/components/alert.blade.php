@@ -1,13 +1,4 @@
 @props(['type' , 'title' => 'titulo por default'])
-<!--
-    'title' => null - esto es decirle que por defecto sea null
-
-    esto son componentes anonimos , porque no dependen de ninguna clase
-
-    $attributes representa todos los atributos HTML extra que le pasas al componente
-
-    El metodo merge() combina esos atributos que vienen desde la vista con los que definís por defecto dentro del componente.
--->
 @php
 switch ($type) {
     case 'info':
