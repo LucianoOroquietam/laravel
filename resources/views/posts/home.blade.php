@@ -43,7 +43,7 @@
         @endforeach
 
     </section>
-
+    {{ $posts->links() }}
     <script>
         if (document.getElementById('toast-success')) {
             setTimeout(() => {

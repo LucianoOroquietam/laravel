@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.pagination-info {
+    color: #ffffff; /* Cambiá esto al color que quieras */
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}

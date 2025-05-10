@@ -10,7 +10,7 @@ class PostController extends Controller
 {
     public function home()
     {
-        $posts = Post::orderBy('id','desc')->get();
+        $posts = Post::orderBy('id','desc')->paginate();
         return view('posts.home', compact('posts'));
     }
 
