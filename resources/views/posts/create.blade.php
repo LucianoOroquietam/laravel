@@ -1,7 +1,7 @@
 <x-app-layout>
     @section('body-class', 'bg-white')
     <div class="flex items-center justify-center min-h-screen bg-gray-100">
-        <form class="w-full max-w-lg justify-between" action="/posts/create/postCreated" method="POST">
+        <form class="w-full max-w-lg justify-between" action="{{ route('posts.created') }}" method="POST">
             @csrf
 
             <div class="flex flex-wrap -mx-3 mb-6">

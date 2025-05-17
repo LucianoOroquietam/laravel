@@ -28,13 +28,13 @@
         <h2 class="text-3xl font-bold text-white mb-6">Listado de Posts</h2>
 
         <button class="text-black hover:text-gray-300 font-bold py-2 px-4 rounded bg-white hover:bg-gray-800">
-            <a href="/posts/create">Crear Post</a>
+            <a href="{{ route('posts.create') }}">Crear Post</a>
         </button>
 
         @foreach ($posts as $post)
             <article class="bg-gray-800 rounded-lg p-6 shadow-md border border-gray-700">
                 <h3 class="text-xl font-semibold text-white mb-2">
-                    <a href="/posts/{{ $post->id }}">
+                    <a href="{{ route('posts.postsById', $post->id) }}">
                         {{ $post->title }}
                     </a>
                 </h3>

@@ -14,15 +14,15 @@
                 </div>
 
                 <div class="mt-8">
-                    <a href="/posts/{{ $post->id }}/editPost"
+                    <a href="{{ route('posts.edit', $post->id) }}"
                         class="inline-block px-4 py-2 bg-green-600 hover:bg-green-500 rounded-md text-white font-semibold transition">
                         Editar Post
-                     </a>
+                    </a>
 
                 </div>
 
                 <div class="mt-8">
-                    <form action="/posts/{{ $post->id }}" method="POST"
+                    <form action="{{ route('posts.delete', $post->id)}}" method="POST"
                         onsubmit="return confirm('¿Estás seguro de que querés eliminar este post?')">
                         @csrf
                         @method('DELETE')
@@ -36,7 +36,7 @@
 
 
                 <div class="mt-8">
-                    <a href="/"
+                    <a href="{{ route('posts.home') }}"
                         class="inline-block px-4 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-md text-white font-semibold transition">
                         ← Volver al listado
                     </a>
